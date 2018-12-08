@@ -1,5 +1,7 @@
 package org.iesalandalus.programacion.agenda;
 
+import javax.naming.OperationNotSupportedException;
+
 /**
  * @author Emanuel Martínez Lonardi
  *
@@ -55,4 +57,30 @@ public class Agenda {
 		}
 		return noSuperaTamano;
 	}
+
+	public Contacto buscar(String contacto) {
+		int indice;
+		Contacto encontrado = null;
+		indice = buscarIndiceCliente(contacto);
+		if (indice < 51) {
+			encontrado = contactos[indice];
+			System.out.println("Se encontró el contacto: " + contacto);
+			return encontrado;
+		} else {
+			System.out.println("No se encontró el contacto");
+		}
+		return encontrado;
+	}
+
+	private int buscarIndiceCliente(String cliente) {
+		int indice = 0;
+		for (Contacto contacto : contactos) {
+			if (contacto.getNombre().equals(cliente)) {
+				return indice;
+			}
+			++indice;
+		}
+		return 51;
+	}
+
 }
