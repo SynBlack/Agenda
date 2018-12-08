@@ -5,7 +5,19 @@ package org.iesalandalus.programacion.agenda;
  *
  */
 public class Agenda {
-	private static final int MAX_CONTACTOS;
-	private static final int numContactos;
+	private static final int MAX_CONTACTOS = 100;
+	private int numContactos;
+	private Contacto[] contactos = null;
+
+	public Contacto[] getContactos() {
+
+		return this.contactos;
+	}
+
+	public int getNumContactos() {
+		return numContactos;
+
+	}
+
 	
 }
