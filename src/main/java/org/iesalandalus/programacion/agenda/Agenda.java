@@ -62,7 +62,7 @@ public class Agenda {
 		int indice;
 		Contacto encontrado = null;
 		indice = buscarIndiceCliente(contacto);
-		if (indice < 51) {
+		if (indice < MAX_CONTACTOS + 1) {
 			encontrado = contactos[indice];
 			System.out.println("Se encontró el contacto: " + contacto);
 			return encontrado;
@@ -80,7 +80,24 @@ public class Agenda {
 			}
 			++indice;
 		}
-		return 51;
+		return MAX_CONTACTOS + 1;
 	}
 
+	public void borrar(String contacto) throws OperationNotSupportedException {
+
+		int indice;
+		indice = buscarIndiceCliente(contacto);
+		if (indice < MAX_CONTACTOS + 1) {
+			contactos[indice] = null;
+			desplazarUnaPosicionHaciaIzquierda(indice);
+		} else {
+			throw new OperationNotSupportedException("El contacto a borrar no existe.");
+		}
+	}
+
+	private void desplazarUnaPosicionHaciaIzquierda(int posicion) {
+		for (int i = posicion; posicion < MAX_CONTACTOS; i++) {
+			contactos[i] = contactos[i + 1];
+		}
+	}
 }
